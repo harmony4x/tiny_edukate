@@ -15,7 +15,7 @@
                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Danh mục</a>
                     <div class="dropdown-menu m-0">
                         @foreach($categories as $category)
-                        <a href="{{$category->slug}}" class="dropdown-item">{{$category->title}}</a>
+                        <a href="{{route('category_course',$category->slug)}}" class="dropdown-item">{{$category->title}}</a>
                         @endforeach
                     </div>
                 </div>

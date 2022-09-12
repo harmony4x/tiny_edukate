@@ -19,9 +19,10 @@ use App\Http\Controllers\Admin\TestimonialController;
 */
 
 Route::get('/',[HomePageController::class,'index'])->name('index');
-Route::get('/chitiet/{slug}',[HomePageController::class,'detail'])->name('detail');
+Route::get('/chi-tiet/{slug}',[HomePageController::class,'detail'])->name('detail');
 Route::get('/contact',[HomePageController::class,'contact'])->name('contact');
 Route::get('/tat-ca-khoa-học',[HomePageController::class,'all_course'])->name('all_course');
+Route::get('/danh-muc/{slug}',[HomePageController::class,'category_course'])->name('category_course');
 
 
 //Admin

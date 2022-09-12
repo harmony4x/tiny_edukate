@@ -46,4 +46,14 @@ class HomePageController extends Controller
         $course_details = Course_Detail::all();
         return view('layouts.pages.course')->with(compact('categories','new_courses','contact','course_details'));
     }
+
+    public function category_course($slug){
+        $categories = Category::where('status',1)->orderBy('id','DESC')->get();
+        $new_courses = Course::with('course_details')->orderBy('id','DESC')->where('status',1)->get();
+        $category_id = Category::where('slug',$slug)->first();
+        $category_courses = Course::with('course_details')->where('category_id',$category_id->id)->orderBy('id','DESC')->where('status',1)->get();
+        $contact = Contact::first();
+        $course_details = Course_Detail::all();
+        return view('layouts.pages.category')->with(compact('categories','category_courses','contact','course_details','new_courses'));
+    }
 }
