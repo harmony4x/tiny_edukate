@@ -22,7 +22,7 @@
                 <a href="{{route('all_course')}}" class="nav-item nav-link">Khóa học</a>
                 <a href="{{route('contact')}}" class="nav-item nav-link">Liên hệ</a>
             </div>
-            <a href="" class="btn btn-primary py-2 px-4 d-none d-lg-block">Đăng nhập</a>
+            <a href="{{route('search_score')}}" class="btn btn-primary py-2 px-4 d-none d-lg-block">Tra cứu điểm</a>
         </div>
     </nav>
 </div>

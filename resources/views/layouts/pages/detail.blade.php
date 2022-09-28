@@ -45,16 +45,16 @@
                     @if($related_courses)
                         <div class="owl-carousel related-carousel position-relative" style="padding: 0 30px;">
                             @foreach($related_courses as $related_course)
-                                @foreach($courses_detail_all as $course)
-                                    @if($related_course->course_code == $course->course_code)
+                                @foreach($courses_detail_all as $courses)
+                                    @if($related_course->course_code == $courses->course_code)
                                 <a class="courses-list-item position-relative d-block overflow-hidden mb-2" href="{{route('detail',$related_course->slug)}}">
-                                    <img class="img-fluid" src="{{asset('uploads/courses/'.$course->image)}}" alt="">
+                                    <img class="img-fluid" src="{{asset('uploads/courses/'.$courses->image)}}" alt="">
                                     <div class="courses-text">
                                         <h4 class="text-center text-white px-3">{{$related_course->title}}</h4>
                                         <div class="border-top w-100 mt-3">
                                             <div class="d-flex justify-content-between p-4">
-                                                <span class="text-white"><i class="fa fa-user mr-2"></i>{{$course->instructor}}</span>
-                                                <span class="text-white"><i class="fa fa-coins mr-2"></i> <small>{{number_format($course->price)}} (VND)</small></span>
+                                                <span class="text-white"><i class="fa fa-user mr-2"></i>{{$courses->instructor}}</span>
+                                                <span class="text-white"><i class="fa fa-coins mr-2"></i> <small>{{number_format($courses->price)}} (VND)</small></span>
                                             </div>
                                         </div>
                                     </div>
@@ -96,8 +96,13 @@
                             <h6 class="text-white my-3">{{$course_detail->start_day}}</h6>
                         </div>
                         <h5 class="text-white py-3 px-4 m-0">Giá tiền: {{number_format($course_detail->price)}} VNĐ</h5>
+
                         <div class="py-3 px-4">
-                            <a class="btn btn-block btn-secondary py-3 px-5" href="">Ghi danh ngay</a>
+                            @if($course->sold<$course->quantity)
+                                <a class="btn btn-block btn-secondary py-3 px-5" href="{{route('register')}}">Ghi danh ngay</a>
+                            @else
+                                <a class="btn btn-block btn-secondary py-3 px-5" href="#" disabled="true">Khóa học đã đủ chỗ</a>
+                            @endif
                         </div>
                     </div>
 

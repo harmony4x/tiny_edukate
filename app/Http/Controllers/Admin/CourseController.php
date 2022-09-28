@@ -45,6 +45,7 @@ class CourseController extends Controller
                 'title' => 'required|unique:course|max:255',
                 'slug' => 'required|unique:course|max:255',
                 'description' => 'required',
+                'quantity' => 'required',
                 'instructor' => 'required',
                 'lecture' => 'required',
                 'duration' => 'required',
@@ -83,6 +84,7 @@ class CourseController extends Controller
         $course->title = $data['title'];
         $course->slug = $data['slug'];
         $course->description = $data['description'];
+        $course->quantity = $data['quantity'];
         $course->category_id = $data['category_id'];
 
         $course->status = $data['status'];
@@ -146,6 +148,7 @@ class CourseController extends Controller
                 'title' => 'required|max:255',
                 'slug' => 'required|max:255',
                 'description' => 'required',
+                'quantity' => 'required',
                 'instructor' => 'required',
                 'lecture' => 'required',
                 'duration' => 'required',
@@ -170,6 +173,7 @@ class CourseController extends Controller
         $course->title = $data['title'];
         $course->slug = $data['slug'];
         $course->description = $data['description'];
+        $course->quantity = $data['quantity'];
         $course->category_id = $data['category_id'];
         $course->status = $data['status'];
         $course->save();

@@ -7,7 +7,9 @@ use App\Models\Contact;
 use App\Models\Course;
 use App\Models\Course_Detail;
 use App\Models\Testimonial;
+use App\Models\User;
 use Illuminate\Http\Request;
+use function PHPUnit\Framework\isEmpty;
 
 class HomePageController extends Controller
 {
@@ -56,4 +58,26 @@ class HomePageController extends Controller
         $course_details = Course_Detail::all();
         return view('layouts.pages.category')->with(compact('categories','category_courses','contact','course_details','new_courses'));
     }
+
+    public function search_score(){
+
+        $categories = Category::where('status',1)->orderBy('id','DESC')->get();
+        $new_courses = Course::with('course_details')->orderBy('id','DESC')->where('status',1)->get();
+        $contact = Contact::first();
+
+        if ($keyword = request()->mssv){
+            $user = User::where('id_student',$keyword)->first();
+            return view('layouts.pages.search_score')->with(compact('contact','categories','new_courses','user','keyword'));
+        }
+
+        return view('layouts.pages.search_score')->with(compact('contact','categories','new_courses'));
+    }
+
+    public function register(){
+        $categories = Category::where('status',1)->orderBy('id','DESC')->get();
+        $new_courses = Course::with('course_details')->where('sold','<',40)->orderBy('id','DESC')->where('status',1)->get();
+        $contact = Contact::first();
+        return view('layouts.pages.register')->with(compact('contact','categories','new_courses'));
+    }
+
 }

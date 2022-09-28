@@ -70,6 +70,7 @@
                 <a href="{{route('course.create')}}" class="nav-item nav-link active"><i class="fa fa-keyboard me-2"></i>Khóa học</a>
                 <a href="{{route('contact.create')}}" class="nav-item nav-link active"><i class="fa fa-address-card me-2"></i>Liên hệ</a>
                 <a href="{{route('testimonial.create')}}" class="nav-item nav-link active"><i class="fa fa-comment me-2"></i>Nhận xét</a>
+                <a href="{{route('user.create')}}" class="nav-item nav-link active"><i class="fa fa-user me-2"></i>Học viên</a>
 
             </div>
         </nav>

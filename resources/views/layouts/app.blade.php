@@ -47,6 +47,31 @@
     @include('layouts.footer')
 
 <!-- JavaScript Libraries -->
+<script>!(function () {
+  let e = document.createElement("script"),
+    t = document.head || document.getElementsByTagName("head")[0];
+  (e.src =
+    "https://cdn.jsdelivr.net/npm/rasa-webchat@1.x.x/lib/index.js"),
+    // Replace 1.x.x with the version that you want
+    (e.async = !0),
+    (e.onload = () => {
+      window.WebChat.default(
+        {
+
+            initPayload: '/greet',
+          customData: { language: "en" },
+          socketUrl: "http://localhost:5005",
+          // add other props here
+            title: "Tiny bot"
+        },
+        null
+      );
+    }),
+    t.insertBefore(e, t.firstChild);
+})();
+    localStorage.clear();
+</script>
+
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
 <script src="{{asset('pages/lib/easing/easing.min.js')}}"></script>

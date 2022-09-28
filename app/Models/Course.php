@@ -10,7 +10,7 @@ class Course extends Model
     use HasFactory;
     protected $table = 'course';
     protected $fillable = [
-        'title', 'slug', 'description', 'course_code', 'category_id', 'status'
+        'title', 'slug', 'description', 'course_code','quantity','sold', 'category_id', 'status'
     ];
     public function course_details(){
         return $this->hasOne(Course_Detail::class,'course_code','course_code');

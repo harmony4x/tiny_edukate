@@ -52,6 +52,11 @@
                             </div>
                             <div class="form-floating mb-3">
                                 <input type="text" class="form-control"
+                                       id="convert_slug" placeholder="Số lượng học viên" value="{{old('quantity')}}" name="quantity">
+                                <label for="floatingInput">Số lượng học viên</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control"
                                        id="convert_slug" placeholder="Người hướng dẫn" value="{{old('instructor')}}" name="instructor">
                                 <label for="floatingInput">Người hướng dẫn</label>
                             </div>
@@ -159,6 +164,11 @@
                             </div>
                             <div class="form-floating mb-3">
                                 <input type="text" class="form-control"
+                                       id="convert_slug" placeholder="Số lượng học viên" value="{{$course_edit->quantity}}" name="quantity">
+                                <label for="floatingInput">Số lượng học viên</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control"
                                        id="convert_slug" placeholder="Người hướng dẫn" value="{{$course_edit->course_details->instructor}}" name="instructor">
                                 <label for="floatingInput">Người hướng dẫn</label>
                             </div>
@@ -245,6 +255,8 @@
                             <th scope="col">Slug khóa học</th>
                             <th scope="col">Mô tả khóa học</th>
                             <th scope="col">Mã khóa học</th>
+                            <th scope="col">Số lượng</th>
+                            <th scope="col">Số lượng đăng ký</th>
                             <th scope="col">Thông tin khóa học</th>
                             <th scope="col">Trạng thái</th>
                             <th scope="col">...</th>
@@ -258,6 +270,8 @@
                                 <td>{{$course->slug}}</td>
                                 <td>{!! $course->description!!}</td>
                                 <td>{{$course->course_code}}</td>
+                                <td>{{$course->quantity}}</td>
+                                <td>{{$course->sold}}</td>
                                 <td><a href="{{route('course.detail',$course->course_code)}}" class="active btn btn-primary" ui-toggle-class="">Chi tiết</a></td>
                                 <td>{{$course->status==0?"Ẩn":"Hiển thị"}}</td>
                                 <td>

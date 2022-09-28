@@ -19,6 +19,7 @@ class CreateCourseTable extends Migration
             $table->string('slug')->unique();
             $table->longText('description');
             $table->string('course_code');
+            $table->integer('member');
             $table->integer('category_id');
             $table->integer('status');
             $table->timestamps();

@@ -181,8 +181,8 @@
                                 <div class="form-group">
                                     <select class="custom-select bg-light border-0 px-3" style="height: 60px;" required="required">
                                         <option selected disabled>Chọn khóa học</option>
-                                        @foreach($new_courses as $discount_count)
-                                        <option value="{{$discount_count->id}}">{{$discount_count->title}}</option>
+                                        @foreach($new_courses as $course)
+                                        <option value="{{$course->id}}">{{$course->title}}</option>
                                         @endforeach
                                     </select>
                                 </div>
