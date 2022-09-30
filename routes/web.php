@@ -8,6 +8,7 @@ use App\Http\Controllers\HomePageController;
 use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\TestimonialController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\DashboardController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -30,7 +31,7 @@ Route::get('/dang-ky-khoa-hoc',[HomePageController::class,'register'])->name('re
 
 
 //Admin
-Route::get('/admin/dashboard',[HomeController::class,'index'])->name('dashboard');
+
 Route::resource('/admin/category',CategoryController::class);
 Route::resource('/admin/course',CourseController::class);
 Route::resource('/admin/contact',ContactController::class);
@@ -38,3 +39,6 @@ Route::resource('/admin/testimonial',TestimonialController::class);
 Route::resource('/admin/user',UserController::class);
 Route::get('/admin/course/detail/{course_code}',[CourseController::class,'course_detail'])->name('course.detail');
 
+//Dashboard
+Route::get('/admin/dashboard',[HomeController::class,'index'])->name('dashboard');
+Route::post('/filter-by-date',[DashboardController::class,'filter_by_date']);

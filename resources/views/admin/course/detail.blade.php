@@ -41,6 +41,46 @@
             </div>
 
         </div>
+
+    </div>
+    <div class="container-fluid pt-4 px-4">
+        {{--        <h3 class="text-center">Khóa học</h3>--}}
+        <div class="row g-4">
+            <div class="col-sm-12 col-xl-12">
+
+                <div class="bg-light rounded h-100 p-4">
+                    <h4 class="mb-4">Học viên của khóa học</h4>
+                    <table class="table" >
+                        <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Mã học viên</th>
+                            <th scope="col">Tên học viên</th>
+                            <th scope="col">Email học viên</th>
+                            <th scope="col">Số điện thoại học viên</th>
+                            <th scope="col">Điểm số</th>
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($users as $key => $user)
+                        <tr>
+                            <th scope="row">{{$key+1}}</th>
+                            <td>{{$user->id_student}}</td>
+                            <td>{{$user->name}}</td>
+                            <td>{{$user->email}}</td>
+                            <td>{{$user->phone}}</td>
+                            <td>{{$user->score}}</td>
+
+                        </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+
     </div>
     <!-- Form End -->
 @endsection

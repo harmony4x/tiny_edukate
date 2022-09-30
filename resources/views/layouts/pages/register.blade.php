@@ -1,6 +1,13 @@
 @extends('layouts.app')
 @section('content')
     <!-- Header Start -->
+    @if(session('message'))
+        <div class="alert-success">
+
+            <script>alert("Đăng ký khóa học thành công!")</script>
+
+        </div>
+    @endif
     <div class="jumbotron jumbotron-image2 jumbotron-fluid position-relative overlay-bottom" style="margin-bottom: 90px;">
         <div class="container text-center my-5 py-5">
             <h1 class="text-black display-4 mt-4 mb-4">&nbsp</h1>
@@ -62,7 +69,7 @@
                                     <select class="custom-select bg-light border-0 px-3" style="height: 60px;" required="required" name="course_code">
                                         <option selected disabled>Chọn khóa học</option>
                                         @foreach($new_courses as $course)
-                                            <option value="{{$course->id}}">{{$course->title}}</option>
+                                            <option value="{{$course->course_code}}">{{$course->title}}</option>
                                         @endforeach
                                     </select>
                                 </div>

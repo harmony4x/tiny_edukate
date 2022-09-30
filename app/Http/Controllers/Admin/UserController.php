@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Course;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -72,6 +73,7 @@ class UserController extends Controller
         $user->save();
 
         if ($user->status==1 ){
+            $user->pay_date = Carbon::now();
             $course = Course::where('course_code',$user->course_code)->first();
             $course->sold+=1;
             $course->save();
@@ -134,6 +136,7 @@ class UserController extends Controller
         $data = $request->all();
         $user = User::find($id);
         if ($user->status==0 && $data['status']==1){
+            $user->pay_date = Carbon::now();
             $course = Course::where('course_code',$user->course_code)->first();
             $course->sold+=1;
             $course->save();
@@ -163,7 +166,11 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        User::find($id)->delete();
+        $user = User::find($id);
+        $course = Course::where('course_code',$user->course_code)->first();
+        $course->sold-=1;
+        $course->save();
+        $user::delete();
         return redirect()->back()->with('message',"Xóa học viên thành công");
     }
 }

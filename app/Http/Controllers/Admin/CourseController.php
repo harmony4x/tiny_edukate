@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Course;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\Course_Detail;
+
 
 class CourseController extends Controller
 {
@@ -223,6 +225,7 @@ class CourseController extends Controller
 
     public function course_detail($course_code){
         $course_detail = Course_Detail::with('course')->where('course_code',$course_code)->first();
-        return view('admin.course.detail')->with(compact('course_detail'));
+        $users = User::where('course_code',$course_code)->where('status',1)->get();
+        return view('admin.course.detail')->with(compact('course_detail','users'));
     }
 }
