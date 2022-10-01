@@ -136,7 +136,7 @@
                                 <label for="floatingSelect">Khóa học</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input type="date" class="form-control"
+                                <input type="text" class="form-control"
                                        placeholder="Điểm số..." name="score" value="{{$user_edit->score}}" >
                                 <label for="floatingInput">Điểm số</label>
                             </div>

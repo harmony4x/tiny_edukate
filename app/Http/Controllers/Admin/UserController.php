@@ -150,6 +150,7 @@ class UserController extends Controller
         $user->phone = $data['phone'];
         $user->birthday = $data['birthday'];
         $user->course_code = $data['course_code'];
+        $user->score = $data['score'];
         $user->status = $data['status'];
         $user->save();
 

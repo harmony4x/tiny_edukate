@@ -59,6 +59,7 @@
                             <th scope="col">Email học viên</th>
                             <th scope="col">Số điện thoại học viên</th>
                             <th scope="col">Điểm số</th>
+                            <th scope="col">...</th>
 
                         </tr>
                         </thead>
@@ -71,6 +72,7 @@
                             <td>{{$user->email}}</td>
                             <td>{{$user->phone}}</td>
                             <td>{{$user->score}}</td>
+                            <td><a href="{{route('user.edit',$user->id)}}" class="active" ui-toggle-class=""><i class="fa fa-edit text-success text-active"></i></a></td>
 
                         </tr>
                         @endforeach
