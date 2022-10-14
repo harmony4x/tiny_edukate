@@ -2,7 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\CategoryController;
-use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\HomePageController;
 use App\Http\Controllers\Admin\ContactController;
@@ -39,6 +38,8 @@ Route::resource('/admin/testimonial',TestimonialController::class);
 Route::resource('/admin/user',UserController::class);
 Route::get('/admin/course/detail/{course_code}',[CourseController::class,'course_detail'])->name('course.detail');
 
-//Dashboard
-Route::get('/admin/dashboard',[HomeController::class,'index'])->name('dashboard');
+//Thong ke
+Route::get('/admin/dashboard',[DashboardController::class,'index'])->name('dashboard');
 Route::post('/filter-by-date',[DashboardController::class,'filter_by_date']);
+Route::post('/dashboard-filter',[DashboardController::class,'dashboard_filter']);
+

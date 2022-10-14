@@ -16,6 +16,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="//cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
+
     <!-- Icon Font Stylesheet -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
@@ -139,6 +141,9 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="//cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+
 
 <script type="text/javascript">
     $(document).ready( function () {
@@ -200,6 +205,38 @@
 </script>
 <script>
     $(document).ready(function (){
+        var chart =  new Morris.Bar({
+            element: 'myfirstchart',
+
+            lineColors: ['#819C79', '#fc8710', '#ff6541', '#a4add3', '#766856'],
+            // pointFillColors: ['#ffffff'],
+            // pointStrokeColors: ['black'],
+            fillOpacity: 0.6,
+            hideHover: 'auto',
+            parseTime: false,
+            xkey: 'total_cost',
+            ykeys: ['total_cost','total_user'],
+            labels: ['Giá tiền', 'Học viên'],
+        });
+        $('.dashboard-filter').change(function (){
+            var dashboard_value = $(this).val()
+            var _token = $('input[name="_token"]').val();
+
+            $.ajax({
+                url : '{{url('/dashboard-filter')}}',
+                method : 'POST',
+                dataType: 'JSON',
+                data : {dashboard_value:dashboard_value,_token:_token},
+                success:function (data){
+                    if (data==''){
+                        alert('Không có dữ liệu')
+                    }else{
+                        chart.setData(data)
+                    }
+                },
+
+            })
+        })
         $('#btn-dashboard-filter').click(function (){
             var _token = $('input[name="_token"]').val();
             var from_date = $('#datepicker').val();
@@ -210,8 +247,12 @@
                 dataType: 'JSON',
                 data : {from_date:from_date,to_date:to_date,_token:_token},
                 success:function (data){
-                    chart.setData(data)
-                }
+                    if (data==''){
+                        alert('Không có dữ liệu')
+                    }else{
+                        chart.setData(data)
+                    }
+                },
             })
         })
     })

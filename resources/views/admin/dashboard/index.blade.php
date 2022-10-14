@@ -14,8 +14,49 @@
 
             }
         </style>
+
         <div class="row">
-            <p class="title_thongke">Thống kê đơn hàng doanh số</p>
+            <p class="title_thongke">Thống kê</p>
+            <div class="container-fluid pt-2 px-4 mb-5">
+                <div class="row g-4">
+                    <div class="col-sm-6 col-xl-3">
+                        <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
+                            <i class="fa fa-user fa-3x text-primary"></i>
+                            <div class="ms-3">
+                                <p class="mb-2">Học Viên</p>
+                                <h6 class="mb-0">{{$user_count}}</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xl-3">
+                        <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
+                            <i class="fa fa-list fa-3x text-primary"></i>
+                            <div class="ms-3">
+                                <p class="mb-2">Danh mục</p>
+                                <h6 class="mb-0">{{$category_count}}</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xl-3">
+                        <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
+                            <i class="fa fa-coins fa-3x text-primary"></i>
+                            <div class="ms-3">
+                                <p class="mb-2">Khóa học</p>
+                                <h6 class="mb-0">{{$course_count}}</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xl-3">
+                        <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
+                            <i class="fa fa-money-check fa-3x text-primary"></i>
+                            <div class="ms-2">
+                                <p class="mb-2">Tổng tiền</p>
+                                <h6 class="mb-0">{{number_format($total)}} VNĐ</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="col-md-2">
                 <form autocomplete="off">
                     @csrf
