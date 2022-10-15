@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 14, 2022 lúc 03:52 PM
+-- Thời gian đã tạo: Th10 15, 2022 lúc 06:35 PM
 -- Phiên bản máy phục vụ: 10.4.22-MariaDB
 -- Phiên bản PHP: 8.0.13
 
@@ -81,7 +81,7 @@ CREATE TABLE `course` (
   `description` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `course_code` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `quantity` int(10) UNSIGNED NOT NULL,
-  `sold` int(10) UNSIGNED DEFAULT NULL,
+  `sold` int(10) UNSIGNED NOT NULL DEFAULT 0,
   `category_id` bigint(20) UNSIGNED NOT NULL,
   `status` int(11) NOT NULL COMMENT '0:ẩn, 1:hiện',
   `created_at` timestamp NULL DEFAULT NULL,
