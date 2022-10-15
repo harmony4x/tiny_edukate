@@ -80,7 +80,31 @@ class UserController extends Controller
             $course->sold+=1;
             $course->save();
         }
+        $registration_date = $user->registration_date;
+        $statistical = Statistical::where('registration_date',$registration_date)->get();
+        if ($statistical){
+            $statistical_count = $statistical->count();
+        }else{
+            $statistical_count = 0;
+        }
+        if ($user->status==1){
+            $course_code = $user->course_code;
+            $course_detail = Course_Detail::where('course_code',$course_code)->first();
+            $course_price = $course_detail->price;
+            if ($statistical_count>0){
+                $statistical_update = Statistical::where('registration_date',$registration_date)->first();
+                $statistical_update->total_cost = $statistical_update->total_cost + $course_price;
+                $statistical_update->total_user = $statistical_update->total_user +1;
+                $statistical_update->save();
+            }else {
+                $statistical_new = new Statistical();
+                $statistical_new->registration_date = $registration_date;
+                $statistical_new->total_cost = $course_price;
+                $statistical_new->total_user = 1;
+                $statistical_new->save();
+            }
 
+        }
         return redirect()->back()->with('message', "Thêm học viên thành công");
     }
 
@@ -178,7 +202,6 @@ class UserController extends Controller
         $user->phone = $data['phone'];
         $user->birthday = $data['birthday'];
         $user->course_code = $data['course_code'];
-        $user->score = $data['score'];
         $user->status = $data['status'];
         $user->save();
 
