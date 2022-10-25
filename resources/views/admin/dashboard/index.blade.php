@@ -86,9 +86,32 @@
 
 
             <div class="col-md-10">
+
                 <div id="myfirstchart" style="height: 250px"></div>
             </div>
         </div>
-
+        <div class="bg-light rounded h-100 p-4 mt-5">
+            <h4 class="mb-4">Thống kê các khóa học</h4>
+            <table class="table" id="myTable">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Tên khóa học</th>
+                    <th scope="col">Số lượng học viên</th>
+                    <th scope="col">Tổng tiền</th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach($list_course as $key => $course)
+                    <tr>
+                        <th scope="row">{{$key+1}}</th>
+                        <td>{{$course->title}}</td>
+                        <td>{{$course->sold}}</td>
+                        <td>{{number_format($course->course_details->price*$course->sold)}} VNĐ</td>
+                    </tr>
+                @endforeach
+                </tbody>
+            </table>
+        </div>
     </div>
 @endsection

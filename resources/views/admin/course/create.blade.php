@@ -268,7 +268,7 @@
                                 <th scope="row">{{$key+1}}</th>
                                 <td>{{$course->title}}</td>
                                 <td>{{$course->slug}}</td>
-                                <td>{!! $course->description!!}</td>
+                                <td>{!! Str::limit($course->description, 200) !!}</td>
                                 <td>{{$course->course_code}}</td>
                                 <td>{{$course->quantity}}</td>
                                 <td>{{$course->sold}}</td>

@@ -15,14 +15,15 @@ class DashboardController extends Controller
     public function index(){
         $category_count = Category::all()->count();
         $course_count = Course::all()->count();
-        $user_count = User::all()->count();
-        $courses = Course::with('course_details')->get();
+        $user_count = User::where('status',1)->count();
+        $statisticals = Statistical::all();
+        $list_course = Course::with('course_details')->orderBy('id','DESC')->get();
         $total = 0;
-        foreach ($courses as $course){
-            $total = $total + ($course->sold*$course->course_details->price);
+        foreach ($statisticals as $statistical){
+            $total = $total + $statistical->total_cost;
         }
 
-        return view('admin.dashboard.index')->with(compact('category_count','course_count','user_count','total'));
+        return view('admin.dashboard.index')->with(compact('category_count','course_count','user_count','total','list_course'));
     }
     function filter_by_date(Request $request){
         $data = $request->all();

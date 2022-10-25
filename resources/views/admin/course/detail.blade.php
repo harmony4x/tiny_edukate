@@ -17,6 +17,7 @@
                             <th scope="col">Số bài học</th>
                             <th scope="col">Thời gian học</th>
                             <th scope="col">Ngày bắt đầu</th>
+                            <th scope="col">Ngày kết thúc</th>
                             <th scope="col">Trình độ</th>
                             <th scope="col">Ngôn ngữ</th>
                             <th scope="col">Giá tiền</th>
@@ -30,6 +31,7 @@
                                 <td>{{$course_detail->lecture}}</td>
                                 <td>{{$course_detail->duration}} tuần</td>
                                 <td>{{$course_detail->start_day}}</td>
+                                <td>{{$course_detail->end_day}}</td>
                                 <td>{{$course_detail->skill_level==0?"Cơ bản":"Nâng cao"}}</td>
                                 <td>{{$course_detail->language}}</td>
                                 <td>{{number_format($course_detail->price)}} VNĐ</td>

@@ -75,9 +75,23 @@ class HomePageController extends Controller
 
     public function register(){
         $categories = Category::where('status',1)->orderBy('id','DESC')->get();
-        $new_courses = Course::with('course_details')->where('sold','<',40)->orderBy('id','DESC')->where('status',1)->get();
+        $new_courses = Course::with('course_details')->whereColumn('sold','<','quantity')->orderBy('id','DESC')->where('status',1)->get();
         $contact = Contact::first();
+
         return view('layouts.pages.register')->with(compact('contact','categories','new_courses'));
+    }
+    public function search_course(){
+
+        $categories = Category::where('status',1)->orderBy('id','DESC')->get();
+        $new_courses = Course::with('course_details')->orderBy('id','DESC')->where('status',1)->get();
+        $contact = Contact::first();
+
+        if ($keyword = request()->mssv){
+            $user = User::where('id_student',$keyword)->first();
+            return view('layouts.pages.search_score')->with(compact('contact','categories','new_courses','user','keyword'));
+        }
+
+        return view('layouts.pages.search_score')->with(compact('contact','categories','new_courses'));
     }
 
 }

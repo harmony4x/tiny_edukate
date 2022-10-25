@@ -30,7 +30,7 @@ class UserController extends Controller
     public function create()
     {
         $list_user = User::orderBy('id','DESC')->get();
-        $courses = Course::where('sold','<',40)->orderby('id','DESC')->get();
+        $courses = Course::whereColumn('sold','<','quantity')->orderby('id','DESC')->get();
         return view('admin.user.create')->with(compact('list_user','courses'));
     }
 
@@ -80,6 +80,7 @@ class UserController extends Controller
             $course->sold+=1;
             $course->save();
         }
+
         $registration_date = $user->registration_date;
         $statistical = Statistical::where('registration_date',$registration_date)->get();
         if ($statistical){
@@ -129,7 +130,7 @@ class UserController extends Controller
     {
         $user_edit = User::find($id);
         $list_user = User::orderBy('id','DESC')->get();
-        $courses = Course::where('sold','<',40)->orderby('id','DESC')->get();
+        $courses = Course::whereColumn('sold','<','quantity')->orderby('id','DESC')->get();
         return view('admin.user.create')->with(compact('user_edit','list_user','courses'));
     }
 
@@ -202,6 +203,7 @@ class UserController extends Controller
         $user->phone = $data['phone'];
         $user->birthday = $data['birthday'];
         $user->course_code = $data['course_code'];
+        $user->score = $data['score'];
         $user->status = $data['status'];
         $user->save();
 
@@ -221,9 +223,9 @@ class UserController extends Controller
     {
         $user = User::find($id);
         $course = Course::where('course_code',$user->course_code)->first();
-        $course->sold-=1;
+        $course->sold=$course->sold-1;
         $course->save();
-        $user::delete();
+        $user->delete();
         return redirect()->back()->with('message',"Xóa học viên thành công");
     }
 }

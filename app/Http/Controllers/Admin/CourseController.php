@@ -6,8 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Course;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Models\Course_Detail;
+use function Sodium\add;
 
 
 class CourseController extends Controller
@@ -96,12 +98,16 @@ class CourseController extends Controller
         $course->save();
 
         if ($course){
+            $date = $data['duration']*7;
+            $end_day = new Carbon($data['start_day']);
+            $end_day = $end_day->addDays($date)->toDateString();
             $course_detail = new Course_Detail();
             $course_detail->course_code = "CT".$id;
             $course_detail->instructor = $data['instructor'];
             $course_detail->lecture = $data['lecture'];
             $course_detail->duration = $data['duration'];
             $course_detail->start_day = $data['start_day'];
+            $course_detail->end_day = $end_day;
             $course_detail->skill_level = $data['skill_level'];
             $course_detail->language = $data['language'];
             $course_detail->price = $data['price'];
@@ -198,10 +204,16 @@ class CourseController extends Controller
 
             $course_detail->image = $new_image;
         }
+        $date = $data['duration']*7;
+        $end_day = new Carbon($data['start_day']);
+        $end_day = $end_day->addDays($date)->toDateString();
+
+
         $course_detail->instructor = $data['instructor'];
         $course_detail->lecture = $data['lecture'];
         $course_detail->duration = $data['duration'];
         $course_detail->start_day = $data['start_day'];
+        $course_detail->end_day = $end_day;
         $course_detail->skill_level = $data['skill_level'];
         $course_detail->language = $data['language'];
         $course_detail->price = $data['price'];

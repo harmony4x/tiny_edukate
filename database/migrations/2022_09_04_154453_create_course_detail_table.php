@@ -20,6 +20,7 @@ class CreateCourseDetailTable extends Migration
             $table->integer('lecture');
             $table->string('duration');
             $table->date('start_day');
+            $table->date('end_day');
             $table->string('skill_level');
             $table->string('language');
             $table->integer('price');

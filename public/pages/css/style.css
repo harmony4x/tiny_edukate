@@ -9797,15 +9797,15 @@ h6,
 }
 
 .jumbotron-image1 {
-  background:  url(../img/header1.jpg), no-repeat center center;
+  background:  url(../img/page-header2.jpg), no-repeat center center;
   background-size: cover;
 }
 .jumbotron-image2 {
-    background:  url(../img/header.jpg), no-repeat center center;
+    background:  url(../img/page-header3.jpg), no-repeat center center;
     background-size: cover;
 }
 .jumbotron-image3 {
-    background:  url(../img/page-header.jpg), no-repeat center center;
+    background:  url(../img/page-header4.jpeg), no-repeat center center;
     background-size: cover;
 }
 .jumbotron-image4 {

@@ -6,20 +6,8 @@
             <h1 class="text-black display-4 mt-4 mb-4">&nbsp</h1>
             <h1 class="text-white display-5 mb-5"> &nbsp</h1>
             <div class="mx-auto mb-5" style="width: 100%; max-width: 600px;">
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <button class="btn btn-outline-light bg-white text-body px-4 dropdown-toggle" type="button" data-toggle="dropdown"
-                                aria-haspopup="true" aria-expanded="false">Kỹ Năng</button>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#">Cơ bản</a>
-                            <a class="dropdown-item" href="#">Nâng cao</a>
-
-                        </div>
-                    </div>
-                    <input type="text" class="form-control border-light" style="padding: 30px 25px;" placeholder="Từ Khóa...">
-                    <div class="input-group-append">
-                        <button class="btn btn-secondary px-4 px-lg-5">Tìm kiếm</button>
-                    </div>
+                <div class="mx-auto mb-5" style="width: 100%; max-width: 600px;">
+                    @include('.layouts.pages.search_template')
                 </div>
             </div>
         </div>

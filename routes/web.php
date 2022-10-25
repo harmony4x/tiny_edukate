@@ -26,6 +26,7 @@ Route::get('/tat-ca-khoa-học',[HomePageController::class,'all_course'])->name(
 Route::get('/danh-muc/{slug}',[HomePageController::class,'category_course'])->name('category_course');
 Route::get('/tra-cuu-diem-thi',[HomePageController::class,'search_score'])->name('search_score');
 Route::get('/dang-ky-khoa-hoc',[HomePageController::class,'register'])->name('register');
+Route::get('/tim-kiem',[HomePageController::class,'search_course'])->name('search_course');
 
 
 
