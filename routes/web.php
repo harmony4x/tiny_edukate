@@ -44,3 +44,5 @@ Route::get('/admin/dashboard',[DashboardController::class,'index'])->name('dashb
 Route::post('/filter-by-date',[DashboardController::class,'filter_by_date']);
 Route::post('/dashboard-filter',[DashboardController::class,'dashboard_filter']);
 
+//Export pdf
+Route::get('/admin/export_pdf/{course_code}',[DashboardController::class,'pdf_export'])->name('pdf_export');

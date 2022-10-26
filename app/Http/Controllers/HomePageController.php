@@ -10,6 +10,8 @@ use App\Models\Testimonial;
 use App\Models\User;
 use Illuminate\Http\Request;
 use function PHPUnit\Framework\isEmpty;
+use Barryvdh\DomPDF\PDF;
+
 
 class HomePageController extends Controller
 {

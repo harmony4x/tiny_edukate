@@ -9,7 +9,7 @@ use App\Models\Statistical;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-
+use Barryvdh\DomPDF\PDF;
 class DashboardController extends Controller
 {
     public function index(){
@@ -74,5 +74,57 @@ class DashboardController extends Controller
 
         }
 
+    }
+
+    public function pdf_export($course_code){
+        $pdf = \App::make('dompdf.wrapper');
+        $pdf->loadHTML($this->print_order_convert($course_code));
+        return $pdf->stream();
+    }
+
+    public function print_order_convert($course_code){
+        $users = User::where('course_code',$course_code)->get();
+        $course = Course::where('course_code',$course_code)->first();
+
+        $output = '';
+        $output .= '<style>
+                        body {
+                            font-family: DejaVu Sans;
+                        }
+                    </style>
+            <div class="bg-light rounded h-100 p-4">
+            <h4 class="mb-4">Học viên của khóa học '.$course->title.'</h4>
+            <table class="table" border="1">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Mã học viên</th>
+                    <th scope="col">Tên học viên</th>
+                    <th scope="col">Email học viên</th>
+                    <th scope="col">Số điện thoại học viên</th>
+                    <th scope="col">Điểm số</th>
+                    <th scope="col">Điểm danh</th>
+
+                </tr>
+                </thead>
+                <tbody>';
+                $key = 0;
+                foreach ($users as $key => $user) {
+                    $key++;
+                    $output .= '<tr>
+                    <th scope="row">'.$key.'</th>
+                    <td>'.$user->id_student.'</td>
+                    <td>'.$user->name.'</td>
+                    <td>'.$user->email.'</td>
+                    <td>'.$user->phone.'</td>
+                    <td>'.$user->score.'</td>
+                    <td></td>
+                </tr>';
+                                };
+                $output .='
+                </tbody>
+            </table>
+        </div>';
+        return $output;
     }
 }

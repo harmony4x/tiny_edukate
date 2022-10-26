@@ -51,7 +51,15 @@
             <div class="col-sm-12 col-xl-12">
 
                 <div class="bg-light rounded h-100 p-4">
-                    <h4 class="mb-4">Học viên của khóa học</h4>
+                    <div class="row">
+                        <div class="col-sm-10">
+                            <h4 class="mb-4">Học viên của khóa học</h4>
+                        </div>
+                        <div class="col-sm-2">
+                            <a class="right  btn btn-primary" href="{{route('pdf_export',$course_detail->course_code)}}" target="_blank">Xuất file PDF</a>
+                        </div>
+                    </div>
+
                     <table class="table" >
                         <thead>
                         <tr>
