@@ -83,7 +83,7 @@ class DashboardController extends Controller
     }
 
     public function print_order_convert($course_code){
-        $users = User::where('course_code',$course_code)->get();
+        $users = User::where('course_code',$course_code)->where('status',1)->get();
         $course = Course::where('course_code',$course_code)->first();
 
         $output = '';
